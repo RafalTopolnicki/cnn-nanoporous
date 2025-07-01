@@ -4,7 +4,24 @@
 This repository contain codebase for the paper 
 *Transferable 3D Convolutional Neural Networks for Elastic Constants Prediction in Nanoporous Metals*
 
-### Setup
+### Nanoporous structures generation 
+Three-dimensional periodic bicontinuous nanoporous structures were generated based on the method proposed by [Soyarslan et al.](https://doi.org/10.1016/j.actamat.2018.01.005), which involves superposition of standing sinusoidal waves with fixed wavelengths and varying phase. 
+
+Three datasets generated in this study are provided in the `Datasets` folder:
+
+- **Dataset 1**: Contains 5000 nanoporous gold structures with a target solid volume fraction of 0.25.
+- **Dataset 2**: Contains 1000 NPG structures with a target solid volume fraction of 0.35.
+- **Dataset 3**: Contains 422 nanoporous silver structures with MD-computed elastic constants. It is divided into two parts: structures 1–250 and 251–422 have target solid volume fractions of 0.25 and 0.35, respectively.
+
+Each structure in the datasets is labeled with Molecular Dynamics (MD) computed elastic constants in three primcipal directions, and a set of computed morphological and topological descriptors. All structures are accompanied by 30 phase values, required for identical regeneration. After the atomistic structure is constructed in `.lmp` format, it is converted into a binary 3D array with the specified grid resolution.
+
+The generator works with the following command
+```
+python grid_generator.py --dataset Datasets/Dataset1_gold_0.25.xlsx --grid_resolution 80 --outputdir Datasets/results --keep_lmp_files 
+
+```
+
+### Model training
 To train the model one need to provide the:
    1. dataset that include all the structures, each kept in separate `.npy` file (binary file format used by NumPy to efficiently store arrays).
    2. a `.csv` file that for each structure provide a mapping between path to its file (column name `npy_path`), the value of elastic constant stored in column (`cii`) and optionally list of additional descriptors
