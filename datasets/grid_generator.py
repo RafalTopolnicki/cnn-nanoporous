@@ -14,9 +14,9 @@ cur_dir = os.getcwd()
 
 def parse_command_line_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset", type=str, default=os.path.join(cur_dir, "Datasets/Dataset1_gold_0.25.xlsx"), help="Path to dataset .xlsx file")
+    parser.add_argument("--dataset", type=str, default="Dataset1_gold_0.25.xlsx", help="Path to dataset .xlsx file")
     parser.add_argument("--grid_resolution", type=int, default=80)
-    parser.add_argument("--outputdir", type=str, default=os.path.join(cur_dir, "Grids"), help="Path where results are stored")
+    parser.add_argument("--output_dir", type=str, default="datasets/results", help="Path where grids are stored")
     parser.add_argument("--cell_constant", type=float, default=4.0701105)
     parser.add_argument("--n_cells", type=int, default=125)
     parser.add_argument("--solid_fraction", type=float, default=0.25)
@@ -36,7 +36,7 @@ def read_lmp_file(file_path):
     atoms = []
     atom_section = False
     for line in lines:
-        if line.strip() == "Atoms # atomic":
+        if line.strip() == 'Atoms # atomic':
             atom_section = True
             continue
         if atom_section:
@@ -475,11 +475,9 @@ class Nano_Porous_Material_Generator():
                 f.write(f"{i}\t{rand_phi}\n")
                 i+=1
                 
-  
-    
 args = parse_command_line_args()
-dataset_path = args["dataset"]  
-output_dir = args['outputdir']
+dataset_path = args['dataset']  
+output_dir = args['output_dir']
 grid_resolution = args['grid_resolution']
 cell_constant = args['cell_constant']
 n_cells = args['n_cells']
@@ -491,8 +489,8 @@ if not os.path.exists(output_dir):
     os.makedirs(output_dir)
                 
 df = pd.read_excel(dataset_path)
-phases_df = df[df.columns[2:32]]                
-                
+phases_df = df[df.columns[2:32]]   
+                  
 num = 0
 for i in tqdm(range(0, len(phases_df), 3)):
     def _main() -> None:
@@ -555,4 +553,6 @@ for i in tqdm(range(0, len(phases_df), 3)):
         if not keep_lmp_files:
             os.remove(path_lmp + '.txt')
 
+    _main()
     num += 1
+
