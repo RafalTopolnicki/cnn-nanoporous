@@ -42,6 +42,27 @@ Use argument `--model_name` to specify CNN architecture to use. Options are
     mobilenet
 ```
 
+## Running Inference
+The champion DenseNet-201 model is available in the models/ directory. 
+There are 40 exemplary voxelized structures provided in the `exemplary_structures/` directory.
+You can run inference directly using the provided model **without any training** (GPU is not required).
+To predict the Elastic Modulus for these 40 structures, run:
+```
+python inference.py --outputfile inference_results.csv --model_path models/model_DenseNet201.pth  --txt_path inference_filelist.txt
+```
+The predictions will be saved to the `inference_results.csv` file, which will look like this:
+```
+path,prediction
+exemplary_structures/155_rot-z.npy,0.92881143
+exemplary_structures/1689_rot-z.npy,0.35452503
+exemplary_structures/2599_rot-z.npy,0.701846
+exemplary_structures/2193_rot-z.npy,1.0405514
+exemplary_structures/3678_rot-y.npy,0.9879305
+exemplary_structures/3217_rot-y.npy,0.4050305
+[....]
+```
+The expected predicted Elastic Modulus values, along with the exact values obtained using MD, are available in the `expected_inference_results.csv` file.
+The R2 coefficient for these 40 exemplary structures is **0.9488**.
 
 ### Credits
 Some CNN implementations used in this repo modifies the code from [xmuyzz/3D-CNN-PyTorch](https://github.com/xmuyzz/3D-CNN-PyTorch) repository. 
