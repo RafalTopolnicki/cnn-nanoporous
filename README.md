@@ -1,8 +1,14 @@
 # cnn-nanoporous
+![image](image_header.png)
+
 ## Transferable 3D Convolutional Neural Networks for Elastic Constants Prediction in Nanoporous Metals
 
 This repository contains the codebase for the paper 
+
 *Transferable 3D Convolutional Neural Networks for Elastic Constants Prediction in Nanoporous Metals*
+
+by S. Zorkaltsev, R. Topolnicki, T.E. Carmon, S. Mathesan, P. Dłotko, D. Mordehai and M, Haranczyk
+
 
 ### Nanoporous structures generation 
 Three-dimensional periodic bicontinuous nanoporous structures were generated based on the method proposed by [Soyarslan et al.](https://doi.org/10.1016/j.actamat.2018.01.005), which involves superposition of standing sinusoidal waves with fixed wavelengths and varying phase. 
