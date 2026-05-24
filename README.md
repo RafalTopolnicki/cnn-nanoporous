@@ -107,6 +107,10 @@ exemplary_structures/3217_rot-y.npy,0.4050305
 The expected predicted Elastic Modulus values, along with the exact values obtained using MD, are available in the `expected_inference_results.csv` file.
 The R2 coefficient for these 40 exemplary structures is **0.9488**.
 
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
 ### Credits
 Some CNN implementations used in this repo modifies the code from [xmuyzz/3D-CNN-PyTorch](https://github.com/xmuyzz/3D-CNN-PyTorch) repository. 
  
